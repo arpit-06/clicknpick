@@ -4,13 +4,14 @@
         <title>Click-n-Pick</title>
         <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="stylesheet" type="text/css" href="/style.css">
+        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Rancho&display=swap">
 
     </head>
         <body>
             <section id="navbar">
             <nav class="navbar navbar-expand-lg navbar-light bg-primary fixed-top">
-                <a class="navbar-brand text-white" href="#"><i class="fa fa-hand-o-up text-white fa-2x" aria-hidden="true"></i></a>
+                <a class="navbar-brand text-white" href="/home"><i class="fa fa-hand-o-up text-white fa-2x" aria-hidden="true"></i></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                   <span><i class="fa fa-list text-white fa-2x"></i></span>
                 </button>
@@ -19,61 +20,97 @@
                   <ul class="navbar-nav mr-auto">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          ELECTRONICS
+                          <i class="fa fa-mobile fa-2x"></i>&nbsp;ELECTRONICS
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                          <a class="dropdown-item" href="#">MOBILES</a>
-                          <a class="dropdown-item" href="#">LAPTOPS</a>
+                          <a class="dropdown-item" href="/catalogue/Mobile">MOBILES</a>
+                          <a class="dropdown-item" href="/catalogue/Laptop">LAPTOPS</a>
                       </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          TV & APPLIANCES
+                          <i class="fa fa-television fa-2x"></i>&nbsp;TV & APPLIANCES
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                          <a class="dropdown-item" href="#">TELEVISION</a>
-                          <a class="dropdown-item" href="#">WASHING MACHINES</a>
+                          <a class="dropdown-item" href="/catalogue/Television">TELEVISION</a>
+                          <a class="dropdown-item" href="/catalogue/Washing_Machine">WASHING MACHINES</a>
                     </li>
                     <li class="nav-item dropdown">
                       <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        HOME & FURNITURE
+                        <i class="fa fa-bed fa-2x"></i>&nbsp;HOME & FURNITURE
                       </a>
                       <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">KITCHEN APPLIANCES</a>
-                        <a class="dropdown-item" href="#">KITCHEN STORAGE</a>
+                        <a class="dropdown-item" href="/catalogue/Kitchen_Appliances">KITCHEN APPLIANCES</a>
+                        <a class="dropdown-item" href="/catalogue/Kitchen_Storage">KITCHEN STORAGE</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          FASHION
+                          <i class="fa fa-male fa-2x"></i>&nbsp;FASHION
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                          <a class="dropdown-item" href="#">MENS</a>
-                          <a class="dropdown-item" href="#">WOMENS</a>
-                          <a class="dropdown-item" href="#">KIDS</a>
+                          <a class="dropdown-item" href="/catalogue/Men">MEN</a>
+                          <a class="dropdown-item" href="/catalogue/Women">WOMEN</a>
+                          <a class="dropdown-item" href="/catalogue/Kids">KIDS</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          SPORTS , BOOKS & MORE
+                          <i class="fa fa-trophy fa-2x"></i>&nbsp;SPORTS , BOOKS & MORE
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                          <a class="dropdown-item" href="#">SPORTS</a>
-                          <a class="dropdown-item" href="#">BOOKS</a>
+                          <a class="dropdown-item" href="/catalogue/Sports">SPORTS</a>
+                          <a class="dropdown-item" href="/catalogue/Books">BOOKS</a>
                           <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#">MORE...</a>
                           </div>
                       </li>
+                      <% if(currentuser && currentuser.isAdmin){ %>
+                        <li class="nav-item">
+                        <a href="/admin" class="text-white btn btn-outline-primary btn-lg nav-link pt-3">ADMIN DASHBOARD</a>
+                       </li>
+                      <% } %>
+                      
                   </ul>
-                  <form class="form-inline  my-2 my-lg-0">
+                  <!-- <form class="form-inline  my-2 my-lg-0">
                     <input class="form-control mr-sm-2" type="search" placeholder="Search for products" aria-label="Search">
                     <button class="btn btn-outline-light my-2 my-sm-0" type="submit">SEARCH</button>
-                  </form>
-                  <ul class="navbar-nav ml-auto">
+                  </form> -->
+          
+                    <% if(!currentuser){ %>
+                    <ul class="navbar-nav ml-auto">
                     <li class="nav-item active">
-                      <a class="btn btn-light text-primary" href="#">LOGIN</a>
+                      <a class="btn btn-light text-primary" href="/login">LOGIN</a>
                     </li>&nbsp;
                     <li class="nav-item active">
-                        <a class="btn btn-light text-primary" href="#">REGISTER</a>
+                        <a class="btn btn-light text-primary" href="/register">REGISTER</a>
                       </li>
-                  </ul>
+                    </ul>
+                      <% } else{ %>
+                        <ul class="navbar-nav">
+                        <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle text-white" style="text-transform: uppercase;" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img src="<%= currentuser.profile %>" height="50" width="50" style="border-radius: 50%;">&nbsp;<%= currentuser.name %>
+                          </a>
+                          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="/profile">VIEW PROFILE</a>
+                            <a class="dropdown-item" href="/order/<%= currentuser._id %>">MY ORDERS</a>
+                            <div class="dropdown-divider"></div>
+                              <a class="dropdown-item" href="/logout">LOGOUT</a>
+                            </div>
+                        </li></ul>
+                        <ul class="navbar-nav">
+                        <li class="nav-item active">
+                          <a class="nav-link text-white" href="/cart/<%= currentuser._id %>"><span class="bg-dark text-white "><%= currentuser.cart.length %></span><i class="fa fa-shopping-cart fa-2x"></i>&nbsp;CART</a>
+                        </li></ul>
+                        <% } %>
+        
                 </div>
               </nav>
-            </section><br><br><br><br>
+            </section>
+            <div class="container">
+              <% if(error && error.length > 0) { %>
+                <div class="alert alert-danger text-center" role="alert"><%= error %></div>  
+              <% } %>
+              <% if(success && success.length > 0) { %>
+                <div class="alert alert-success text-center" role="alert"><%= success %></div>
+                <% } %>
+            </div>
+            

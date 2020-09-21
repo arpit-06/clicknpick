@@ -1,0 +1,71 @@
+<%- include ('partials/header'); -%>
+<% var d = new Date() %>
+<% var c = 0 %>
+<br>
+<div class="alert alert-info text-center container" role="alert">
+    YOUR   ORDER   HAS   BEEN   SUCCESSFULLY   PLACED   🥳 <a href="/home" class="alert-link">GO  TO  HOME  PAGE  AND  EXPLORE   MORE!!!</a>.
+</div>
+
+<div class="container arpit w-50" style="line-height: 1.1;">
+    <div class="text-secondary">
+        <i class="fa fa-hand-o-up text-dark fa-2x" aria-hidden="true"></i> CLICK-&-PICK
+    </div>
+    <div class="bg-warning container-fluid mt-2">
+        <h1 class="mx-auto bg-white w-25 pl-3">INVOICE</h1>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <h3>Invoice To: </h3>
+            <h4 style="line-height: 0.7;"><%= currentuser.name %></h4>
+            <p class="text-secondary" style="line-height: 1.2;"><%= currentuser.address %>&emsp;&emsp; <%= currentuser.mobile %></p>
+        </div>
+        <div class="col-md-4"></div>
+        <div class="col-md-4 text-secondary">
+            <br><br>
+            <p style="line-height: 0.8;">INVOICE #&nbsp;&nbsp;&nbsp;&nbsp;<%= Math.ceil(Math.random()*1000000000) %></p>
+            <P style="line-height: 0.8;">DATE&emsp;&emsp;<%= d.toDateString() %></P>
+            <p style="line-height: 0.8;">PAYMENT MODE -&nbsp;&nbsp;&nbsp;&nbsp;<%= method %></p>
+        </div>
+    </div>
+    <div>
+        <table class="table table-hover table-striped">
+            <tr class="bg-dark">
+                <td class="text-white">SL .</td>
+                <td class="text-white">Item Description</td>
+                <td class="text-white">Unit Price</td>
+                <td class="text-white">Qty.</td>
+                <td class="text-white">Total</td>
+            </tr>
+            <% user.cart.forEach((product)=>{ %>
+                <% if(product.equals(item)){ %>
+                    <% c=c+1; %>
+                <% } %>
+            <% }) %>
+            <tr>
+                <td>1</td>
+                <td><%= item.name %></td>
+                <%= item.quantity-- %>
+                <td>Rs. <%= item.price %></td>
+                <td><%= c %></td>
+                <td>Rs. <%= c*item.price %></td>
+            </tr>
+        </table>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <h5 class="text-success">THANK YOU FOR SHOPPING</h5> <br>
+            <h5 class="text-secondary">TERMS & CONDITIONS</h5>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor vel magni ipsa. </p>
+        </div>
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <h6>SUB TOTAL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Rs. <%= c*item.price %></h6>
+            <h6>DELIEVERY&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Rs. 30</h6>
+            <h6>TAX&emsp;&emsp;&emsp;&emsp;Rs. 0.00</h6>
+            <h5 class="bg-warning text-dark p-2">TOTAL &emsp;&emsp;Rs. <%= c*item.price+30 %></h5>
+        </div>
+    </div>
+</div><br>
+<p class="text-center">RETURN BACK TO <a href="/home">HOME PAGE</a></p>
+<br><br><br><br><br><br>
+<%- include ('partials/footer'); -%>

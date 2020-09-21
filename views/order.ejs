@@ -1,0 +1,48 @@
+<%- include ('partials/header') %> 
+
+
+<div class="container w-50">
+        <div class="bg-white text-dark">
+          <h1 class="text-info text-center display-4">MY ORDERS</h1><br>
+          <hr class="border border-secondary">
+          <% if(currentuser.order.length<1) {%>
+            <div class="container text-center">
+            <h1 class="text-danger display-4 text-center">Your have not ordered anything yet!!!</h1><br><br>
+            <h1 class="text-info ">To see amazing deals and products browse through our catalogue</h1><br>
+            <a href="/home" class="btn btn-success btn-lg text-white text-center ">BROWSE NOW</a>
+          </div>
+          <% } %>
+          <% user.order.forEach((product, index)=>{ %>
+            <% var c=0 %>
+            <% var flag=0 %>
+            <% for(var i=0; i< currentuser.order.length ; i++){ %>
+              <% if(currentuser.order[i].equals(product._id)) {%>
+               <% c=c+1; }%>
+            <% } %>
+          <% for(var j=index-1 ; j>=0 ; j--){ %>
+           <% if(currentuser.order[j].equals(currentuser.order[index])){ %>
+              <% flag=1 %>
+            <% }} %>
+
+          <% if(flag==0) { %>
+          <div class="row bg m-5">
+            <!-- <div class="col-md-8"> -->
+              <div>
+                  <img src="<%= product.image %>" alt="" width="300" height="300">
+              </div>
+              <div class="ml-5">
+                  <h3><%= product.name %></h3>
+                  <h6><%= product.title %></h6>
+                  <h3>Rs. <%= product.price %></h3>
+                  <h3 class="text-secondary">Delivered On</h3>
+                  <h3><%= product.created.toLocaleString() %></h3>
+                  <a href="/home/<%= product._id %>" class="btn btn-lg btn-primary">CHECKOUT</a>&nbsp;&nbsp;
+              </div>
+          </div>
+          <hr class="border border-secondary">
+          <% } %> 
+          <% }) %>
+        </div><br><br>
+<%- include ('partials/footer') %> 
+
+

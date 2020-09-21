@@ -1,22 +1,32 @@
 <%- include ('partials/header'); -%>
-<section class="container-fluid">
+<section class="container-fluid mt-3">
   <div class="row">
       <div class="col-md-5 bg-light">
-          <img src="https://images-na.ssl-images-amazon.com/images/I/71UcuvuKleL._SL1500_.jpg" width="500" height="500">
-          <div class="row">
-          <div class="col-md-1"></div>
-          <div class="col-md-4">
-              <a class="btn btn-block btn-lg btn-warning text-white"><i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;ADD TO CART</a>
+          <img src="<%= product.image %>" width="500" height="500">
+          <% if(currentuser) {%>
+          <div class="row mt-3">
+          <div class="col-md-5">
+              <a class="btn btn-block btn-lg btn-warning text-white" href="/cart/<%= product._id %>/<%= currentuser._id %>"><i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;ADD TO CART</a>
           </div>
-          <div class="col-md-4">
-              <a class="btn btn-block btn-lg btn-danger text-white"><i class="fa fa-bolt" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;BUY NOW</a>
+          <div class="col-md-5">
+              <a class="btn btn-block btn-lg btn-danger text-white" href="/buy/<%= product._id %>/<%= currentuser._id %>"><i class="fa fa-bolt" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;BUY NOW</a>
           </div>
           </div>
+          <%} else {%>
+            <div class="row mt-3">
+                <div class="col-md-5">
+                    <a class="btn btn-block btn-lg btn-warning text-white" href="/login"><i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;ADD TO CART</a>
+                </div>
+                <div class="col-md-5">
+                    <a class="btn btn-block btn-lg btn-danger text-white" href="/login"><i class="fa fa-bolt" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;BUY NOW</a>
+                </div>
+                </div>
+            <% } %>
       </div>
       <div class="col-md-6 bg-light pl-0">
-          <h3 class="text-secondary">Product name</h3>
-          <h5>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h5>
-          <h3><span class="text-success">Special Price</span><br><i class="fa fa-inr" aria-hidden="true"></i> 47,800</h3>
+          <h3 class="text-secondary"><%= product.name %></h3>
+          <h5><%= product.title %>.</h5>
+          <h3><span class="text-success">Special Price</span><br><i class="fa fa-inr" aria-hidden="true"></i> <%= product.price %></h3>
           <h5>Available Offers</h5>
           <p><i class="fa fa-tag text-success"></i>&nbsp;&nbsp;Bank Offer10% Instant Savings on CITI Credit and Debit Cards <span class="text-primary">T&C</span></p>
           <p><i class="fa fa-tag text-success"></i>&nbsp;&nbsp;Bank Offer10% Instant Savings on CITI Credit and Debit Cards <span class="text-primary">T&C</span></p>
@@ -24,13 +34,11 @@
               <div class="col-md-6">
           <h2>Product Details</h2>
           <ul>
-              <li>Stylish & Portable Thin and Light Laptop</li>
-              <li>14 inch Full HD LED Backlit IPS Display</li>
-              <li>Finger Print Sensor for Faster System Access</li>
-              <li>Intel Core i7 Processor (8th Gen)</li>
-              <li>16GB DDR4 RAM</li>
-              <li>1 TB HDD</li>
-              <li>16 bit Windows 10  Operating System</li>
+              <li><%= product.detail1 %></li>
+              <li><%= product.detail2 %></li>
+              <li><%= product.detail3 %></li>
+              <li><%= product.detail4 %></li>
+              <li><%= product.detail5 %></li>
           </ul>
       </div>
       <div class="col-md-6">
@@ -38,8 +46,16 @@
           <p><i class="fa fa-undo" aria-hidden="true"></i>  30 days Return Policy</p>
           <p><i class="fa fa-inr" aria-hidden="true"></i>  Cash on delivery Available</p>
       </div>
+      <% if(currentuser && currentuser.isAdmin){ %>
+        <div class="d-flex">
+        <a class="btn btn-light" href="/home/<%= product._id%>/update"><i class="fa fa-pencil fa-2x text-dark"></i></a>&emsp;
+        <form action="/home/delete/<%= product._id%>?_method=DELETE" method="POST">
+    <button class="btn btn-light"><i class="fa fa-trash fa-2x text-dark" style="cursor: pointer;"></i></button>
+        </form>
+    </div>
+      <% } %>
       </div>
       </div>
     </div>
-</section><br>
+</section><br><br><br><br>
 <%- include ('partials/footer'); -%>

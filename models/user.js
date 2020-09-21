@@ -1,14 +1,20 @@
 var mongoose = require("mongoose");
 var passportLocalMongoose = require("passport-local-mongoose");
-const { urlencoded } = require("body-parser");
 var userSchema = new mongoose.Schema({
     username: String,
     password: String,
-    email: String,
+    isAdmin: Boolean,
+    name: String,
     mobile: String,
     address: String,
     profile:String,
     cart:[
+        {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Product"
+        }
+    ],
+    order:[
         {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Product"
