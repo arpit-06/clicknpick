@@ -57,6 +57,6 @@ app.use(product);
 app.use(cart);
 app.use(payment);
 //============================================================================
-app.listen(3000,function(){
+app.listen((process.env.PORT || 3000),function(){
     console.log("You are now connected to ClickNpick");
 })
