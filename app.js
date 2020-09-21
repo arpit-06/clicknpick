@@ -17,7 +17,7 @@ var cart      = require('./routes/cart'),
 
 //==============================================================================
 
-mongoose.connect("mongodb://localhost:27017/clickpick", {useNewUrlParser: true,
+mongoose.connect("mongodb+srv://Arpit:12345@cluster0.o7pzj.mongodb.net/clicknpick?retryWrites=true&w=majority", {useNewUrlParser: true,
 useUnifiedTopology: true
 });
 mongoose.connection.on('connected',()=>{
