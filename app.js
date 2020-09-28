@@ -17,9 +17,10 @@ var cart      = require('./routes/cart'),
 
 //==============================================================================
 
-mongoose.connect("mongodb+srv://Arpit:12345@cluster0.o7pzj.mongodb.net/clicknpick?retryWrites=true&w=majority", {useNewUrlParser: true,
+mongoose.connect("mongodb://localhost:27017/clickpick", {useNewUrlParser: true,
 useUnifiedTopology: true
 });
+//mongodb+srv://Arpit:12345@cluster0.o7pzj.mongodb.net/clicknpick?retryWrites=true&w=majority
 mongoose.connection.on('connected',()=>{
     console.log("Also connected to mongo Database!!!");
 });
